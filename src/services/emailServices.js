@@ -104,21 +104,6 @@ Enviado desde el formulario de contacto de efmv.es
         };
 
     } catch (error) {
-        //Si falla el envío, intenta usar otra configuración alternativa antes de rendirse
-        if (error.code === 'EAUTH') {
-            try {
-                const altTransporter = await testConfigurations();
-                const info = await altTransporter.sendMail(mailOptions);
-                return {
-                    success: true,
-                    messageId: info.messageId,
-                    message: 'Correo enviado con configuración alternativa'
-                };
-            } catch (altError) {
-                throw new Error(`Error en todas las configuraciones: ${altError.message}`);
-            }
-        }
-
         throw new Error(`Error en el envío: ${error.message}`);
     }
 };
