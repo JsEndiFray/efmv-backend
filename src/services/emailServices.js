@@ -57,9 +57,9 @@ const sendEmailNotification = async (name, email, message, phone = '') => {
                     <div style="padding: 30px;">
                         <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; margin-bottom: 20px;">
                             <h3 style="color: #333; margin-top: 0;">Información del Contacto:</h3>
-                            <p style="margin: 10px 0;"><strong>👤 Nombre:</strong> ${name}</p>
-                            <p style="margin: 10px 0;"><strong>📧 Email:</strong> <a href="mailto:${email}">${email}</a></p>
-                            <p style="margin: 10px 0;"><strong>📱 Teléfono:</strong> ${phone || 'No proporcionado'}</p>
+                            <p style="margin: 10px 0;"><strong>👤 Nombre:</strong> ${escapeHtml(name)}</p>
+                            <p style="margin: 10px 0;"><strong>📧 Email:</strong> <a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></p>
+                            <p style="margin: 10px 0;"><strong>📱 Teléfono:</strong> ${phone ? escapeHtml(phone) : 'No proporcionado'}</p>
                         </div>
                         
                         <div style="margin-bottom: 20px;">
