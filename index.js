@@ -187,6 +187,13 @@ app.get('/api/cv/status', (req, res) => {
 
 // Middleware de manejo de errores
 app.use((error, req, res, next) => {
+    if (error.type === 'entity.too.large') {
+        return res.status(413).json({
+            success: false,
+            message: 'El cuerpo de la solicitud supera el límite permitido'
+        });
+    }
+
     if (process.env.NODE_ENV === 'development') {
         console.error('Error no manejado:', error);
     }
