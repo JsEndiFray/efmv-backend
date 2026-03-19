@@ -23,6 +23,13 @@ const transporter = nodemailer.createTransport({
 
 
 // Valida que los campos obligatorios estén presentes y que el email tenga formato válido
+const escapeHtml = (str) => str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
 const sendEmailNotification = async (name, email, message, phone = '') => {
     // Validación de parámetros individuales
     if (!name || !email || !message) {
@@ -59,7 +66,7 @@ const sendEmailNotification = async (name, email, message, phone = '') => {
                         <div style="margin-bottom: 20px;">
                             <h3 style="color: #333; margin-bottom: 10px;">💬 Mensaje:</h3>
                             <div style="background-color: white; padding: 20px; border-left: 4px solid #007bff; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                                ${message.replace(/\n/g, '<br>')}
+                                ${escapeHtml(message).replace(/\n/g, '<br>')}
                             </div>
                         </div>
                         
