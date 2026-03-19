@@ -1,5 +1,4 @@
 const nodemailer = require('nodemailer');
-require('dotenv').config();
 
 // Validar variables de entorno al inicio
 if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {

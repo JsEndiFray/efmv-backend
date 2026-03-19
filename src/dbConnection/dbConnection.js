@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const dotenv = require('dotenv').config();
 const Contact = require('../models/contact.models')
 
 

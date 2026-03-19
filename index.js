@@ -69,14 +69,6 @@ app.post('/api/contact', async (req, res) => {
             });
         }
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            return res.status(400).json({
-                success: false,
-                message: 'El formato del email no es válido'
-            });
-        }
-
         // Guardar en BD
         try {
             await dbConnection.createContact({
