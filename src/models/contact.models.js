@@ -58,21 +58,5 @@ contactSchema.index({ email: 1 });
 contactSchema.index({ createdAt: -1 });
 contactSchema.index({ status: 1 });
 
-// Método virtual para obtener fecha formateada
-contactSchema.virtual('formattedDate').get(function() {
-    return this.createdAt.toLocaleString('es-ES');
-});
-
-// Método para marcar como leído
-contactSchema.methods.markAsRead = function() {
-    this.status = 'leido';
-    return this.save();
-};
-
-// Método para marcar como respondido
-contactSchema.methods.markAsResponded = function() {
-    this.status = 'respondido';
-    return this.save();
-};
 
 module.exports = mongoose.model('Contact', contactSchema);

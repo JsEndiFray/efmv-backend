@@ -74,7 +74,9 @@ app.post('/api/contact', async (req, res) => {
                 name: name.trim(),
                 email: email.trim(),
                 message: message.trim(),
-                phone: phone?.trim() || ''
+                phone: phone?.trim() || '',
+                ipAddress: req.ip,
+                userAgent: req.headers['user-agent'] || ''
             });
         } catch (dbError) {
             if (process.env.NODE_ENV === 'development') {

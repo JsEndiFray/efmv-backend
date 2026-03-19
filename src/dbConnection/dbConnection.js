@@ -15,12 +15,6 @@ function createContact(newUser) {
     return Contact.create(newUser);
 }
 
-//Funcion para obtener los contactos
-function getContact() {
-    return Contact.find();
-}
-
 module.exports = {
     createContact,
-    getContact,
 };
