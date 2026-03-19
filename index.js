@@ -213,9 +213,19 @@ app.use('*', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    if (process.env.NODE_ENV === 'development') {
-        console.log('🚀 Servidor conectado en el puerto:', port);
-        console.log('🌍 CORS configurado para producción');
+async function startServer() {
+    try {
+        await dbConnection.connectDB();
+        app.listen(port, () => {
+            if (process.env.NODE_ENV === 'development') {
+                console.log('🚀 Servidor conectado en el puerto:', port);
+                console.log('🌍 CORS configurado para producción');
+            }
+        });
+    } catch (error) {
+        console.error('Error al conectar con MongoDB:', error.message);
+        process.exit(1);
     }
-});
+}
+
+startServer();
